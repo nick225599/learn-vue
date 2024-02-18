@@ -12,6 +12,7 @@
 <body>
     <div id="root">
         <h1>hello, {{name}} from {{address}}</h1>
+        and github address: <a :href="url">{{url}}</h2>
     </div>
     <script type="text/javascript">
         Vue.config.productionTip = false
@@ -19,7 +20,8 @@
             el: '#root',
             data: {
                 name: 'sun_cs',
-                address: 'Shanghai'
+                address: 'Shanghai',
+                url: 'https://github.com/nick225599'
             }
         })
     </script>
