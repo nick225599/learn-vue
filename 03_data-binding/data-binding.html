@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>meet vue</title>
+    <script type="text/javascript" src="../js/vue.js" ></script>
+   
+    <style>
+        input {
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h1>单向数据绑定<input type="text" :value="gitAddress"></h1>
+        <h1>双向数据绑定<input type="text" v-model:value="gitAddress"></h1>
+        <h1>双向数据绑定<input type="text" v-model="gitAddress"></h1>
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: 'sun_cs',
+                gitAddress: 'https://github.com/nick225599'
+            }
+        })
+    </script>
+</body>
+   
+</html>
