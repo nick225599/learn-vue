@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>回顾 Object.defineProperty 方法</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        // 默认不可枚举、不可修改
+        console.log('')
+        console.log('---------------------------- 默认不可枚举、不可修改、不可配置')
+        let person = {
+            name: '张三',
+            sex: '男',
+        }
+        Object.defineProperty(person, 'age', {
+            value: 18
+        })
+        console.log('Object.keys(person): ', Object.keys(person))
+        console.log('----------------------------')
+        console.log('')
+
+        // 可枚举
+        console.log('')
+        console.log('---------------------------- 可枚举')
+        person = {
+            name: '张三',
+            sex: '男',
+        }
+        Object.defineProperty(person, 'age', {
+            value: 18,
+            enumerable: true
+        })
+        console.log('Object.keys(person): ', Object.keys(person))
+        console.log('----------------------------')
+        console.log('')
+
+        // 可修改
+        console.log('')
+        console.log('---------------------------- 可修改')
+        person.age += 1
+        console.log('person.age（应该修改失败，仍旧是 18）: ', person.age)
+        person = {
+            name: '张三',
+            sex: '男',
+        }
+        Object.defineProperty(person, 'age', {
+            value: 18,
+            enumerable: true,
+            writable: true
+        })
+        person.age += 1
+        console.log('person.age（应该修改成功，变成是 19）: ', person.age)
+        console.log('----------------------------')
+        console.log('')
+
+        // 可配置
+        console.log('')
+        console.log('---------------------------- 可配置')
+        delete person.age
+        console.log('person1 (delete age failed): ', person)
+        person = {
+            name: '张三',
+            sex: '男',
+        }
+        Object.defineProperty(person, 'age', {
+            value: 18,
+            enumerable: true,
+            writable: true,
+            configurable: true
+        })
+        delete person.sex
+        console.log('person1 (delete sex): ', person)
+        delete person.age
+        console.log('person1 (delete age success): ', person)
+        console.log('----------------------------')
+        console.log('')
+
+        // 代理
+        console.log('')
+        console.log('---------------------------- 代理')
+        let ageOfPerson = 18;
+        person = {
+            name: '张三',
+            sex: '男',
+        }
+        Object.defineProperty(person, 'age', {
+            get() {
+                console.log('有人在 get person.age')
+                return ageOfPerson
+            },
+            set(value) {
+                console.log('有人在 set person.age')
+                ageOfPerson = value
+            }
+        })
+        console.log('person.age: ', person.age)
+        console.log('')
+        console.log('准备开始 person.age += 1')
+        person.age += 1
+        console.log('')
+        console.log('person.age: ', person.age)
+        console.log('----------------------------')
+        console.log('')
+    </script>
+</body>
+
+</html>
