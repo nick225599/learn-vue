@@ -17,7 +17,10 @@
     <div id="root">
         <h1>单向数据绑定<input type="text" v-bind:value="gitAddress"></h1>
         <h1>单向数据绑定<input type="text" :value="gitAddress"></h1>
-        <h1>双向数据绑定<input type="text" v-model:value="gitAddress"></h1>
+
+        <!-- v-model 压根没啥修饰符可以加，什么类型的 input 对应的 v-model 就绑定到对应的输入属性上 -->
+        <h1>双向数据绑定<input type="text" v-model:value="gitAddress"></h1> 
+        
         <h1>双向数据绑定<input type="text" v-model="gitAddress"></h1>
     </div>
     <script type="text/javascript">
