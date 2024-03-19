@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本列表</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+
+    <input v-model="keyword" placeholder="请输入姓名">
+    <ul>
+        <li v-for="p in filteredPersonList" :key="p.id">
+            姓名：{{p.name}}， 年龄：{{p.age}}，性别：{{p.sex}}
+        </li>
+    </ul>
+
+</div>
+<script type="application/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            keyword: "",
+            personList: [
+                {id: "P001", name: "周冬雨", age: 13, sex: "女"},
+                {id: "P002", name: "马冬梅", age: 14, sex: "女"},
+                {id: "P003", name: "周杰伦", age: 15, sex: "男"},
+                {id: "P004", name: "温兆伦", age: 15, sex: "男"}
+            ],
+            filteredPersonList: []
+        },
+        watch: {
+            keyword: {
+                immediate : true,
+                handler(val) {
+                    this.filteredPersonList = this.personList.filter((e) => {
+                        return e.name.indexOf(val) > -1
+                    })
+                }
+
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
