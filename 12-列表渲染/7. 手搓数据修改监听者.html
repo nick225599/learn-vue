@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>观察者</title>
+</head>
+<body>
+<script type="application/javascript">
+    function Observer(data){
+        const keys = Object.keys(data)
+        keys.forEach((key)=>{
+            Object.defineProperty(this, key, {
+                get(){
+                    console.log("data[" + key + "] 被访问")
+                    return data[key];
+                },
+                set(val){
+                    console.log("data[" + key + "] 被修改")
+                    data[key] = val;
+                }
+            })
+        })
+    }
+
+    let data = {
+        name: "foo",
+        age: 18
+
+    }
+
+    let dataObs = new Observer(data)
+    let vm = {}
+    vm._data = data = dataObs
+</script>
+</body>
+</html>
