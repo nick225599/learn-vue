@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本列表</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+
+    <input v-model="keyword" placeholder="请输入姓名">
+    <ul>
+        <li v-for="p in filteredPersonList" :key="p.id">
+            姓名：{{p.name}}， 年龄：{{p.age}}，性别：{{p.sex}}
+        </li>
+    </ul>
+    <button @click="sortType = 'orderByAgeAsc'">sort by age asc</button>
+    <button @click="sortType = 'orderByAgeDesc'">sort by age desc</button>
+    <button @click="sortType = 'doNotSort'">do not sort</button>
+
+</div>
+<script type="application/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            keyword: "",
+            personList: [
+                {id: "P004", name: "温兆伦", age: 60, sex: "男"},
+                {id: "P001", name: "周冬雨", age: 32, sex: "女"},
+                {id: "P002", name: "马冬梅", age: 42, sex: "女"},
+                {id: "P003", name: "周杰伦", age: 45, sex: "男"}
+            ],
+            sortType: ""
+        },
+        computed: {
+            filteredPersonList() {
+                const temp = this.personList.filter((e) => {
+                    return e.name.indexOf(this.keyword) > -1
+                })
+                if ('orderByAgeAsc' === this.sortType) {
+                    temp.sort((a, b) => {
+                        return a.age - b.age
+                    })
+                } else if ('orderByAgeDesc' === this.sortType) {
+                    temp.sort((a, b) => {
+                        return b.age - a.age
+                    })
+                }
+                return temp;
+            }
+        }
+    })
+</script>
+</body>
+</html>
