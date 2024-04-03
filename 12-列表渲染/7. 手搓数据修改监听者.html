@@ -11,11 +11,11 @@
         keys.forEach((key)=>{
             Object.defineProperty(this, key, {
                 get(){
-                    console.log("data[" + key + "] 被访问")
+                    console.log(`data[${key}] 被访问`)
                     return data[key];
                 },
                 set(val){
-                    console.log("data[" + key + "] 被修改")
+                    console.log(`data[${key}] 被修改`)
                     data[key] = val;
                 }
             })
