@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <form id="signUpForm" @submit.prevent="submitSignUpForm()">
+        原始时间：{{time}}<br>
+        计算属性时间：{{computedTime}}<br>
+        方法时间1：{{getCurrentTime()}}<br>
+        方法时间2：{{getCurrentTime(1712462929055, 'YYYY 年 MM 月 DD 日 HH:mm:ss.SSS')}}<br>
+        过滤器时间：{{time|timeFormatter}}<br>
+    </form>
+</div>
+<script type="application/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            time: 1712462929055
+        },
+        computed:{
+            computedTime() {
+                return dayjs().format('YYYY-MM-DD HH:mm:ss.SSS')
+            }
+        },
+        methods: {
+            getCurrentTime(curTime=new Date().getTime(), fmt = 'YYYY-MM-DD HH:mm:ss.SSS'){
+                return dayjs(curTime).format(fmt)
+            }
+        },
+        filters:{
+            timeFormatter(value){
+                return dayjs(value).format('YYYY-MM-DD HH:mm:ss.SSS')
+            }
+        }
+    })
+</script>
+</body>
+</html>
