@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-pre</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <span>{{}}语法</span>
+    <h3>{{str}}</h3>
+    <br><br>
+
+    <!-- v-pre 跳过编译 -->
+    <span v-pre>v-text 语法</span>
+    <h3 v-text="str"></h3>
+    <br><br>
+
+    <span>v-text 语法（处理不了标签）</span>
+    <h3>{{str2}}</h3>
+    <br><br>
+    
+</div>
+<script type="application/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            str: "Hello, Vue2!",
+            str2: "<a href=''>Hello, Vue2!</a>"
+        }
+    })
+</script>
+</body>
+</html>
