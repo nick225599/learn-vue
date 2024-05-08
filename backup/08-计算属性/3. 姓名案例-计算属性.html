@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>3. 姓名案例-计算属性.html</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <style>
+        input {
+            width: 400px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <form action="changeName" method="post">
+            名：<input type="text" name="firstName" v-model="firstName"><br>
+            姓：<input type="text" name="lastName" v-model="lastName"><br>
+            全名(methods)：<span>{{getFullName()}}</span><br>
+            全名(methods)：<span>{{getFullName()}}</span><br>
+            全名(methods)：<span>{{getFullName()}}</span><br>
+            全名(methods)：<span>{{getFullName()}}</span><br>
+            全名(methods)：<span>{{getFullName()}}</span><br>
+            全名(computed)：<span>{{fullName}}</span><br>
+            全名(computed)：<span>{{fullName}}</span><br>
+            全名(computed)：<span>{{fullName}}</span><br>
+            全名(computed)：<span>{{fullName}}</span><br>
+            全名(computed)：<span>{{fullName}}</span><br>
+            <input type="submit" value="changeName">
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: 'Nickolas',
+                lastName: 'Sun'
+            },
+            methods: {
+                getFullName() {
+                    var d1 = 2.3
+                    for (var i1 = 0; i1 < 3000000; i1++) {
+                        d1 = d1 + 3.1415926
+                    }
+                    return this.firstName.toUpperCase()
+                        + ' · '
+                        + this.lastName.toUpperCase()
+                        + " "
+                        + new Date().getMilliseconds()
+                }
+            },
+            computed: {
+                fullName: {
+                    get() {
+                        console.log('computed.fullName.get invoked')
+                        var d2 = 2.3
+                        for (var i2 = 0; i2 < 3000000; i2++) {
+                            d2 = d2 + 3.1415926
+                        }
+                        return this.firstName.toUpperCase()
+                            + ' · '
+                            + this.lastName.toUpperCase()
+                            + " "
+                            + new Date().getMilliseconds()
+                    },
+                    set(value) {
+                        console.log('computed.fullName.set invoked')
+                        var arr = value.split(' · ')
+                        this.firstName = arr[0]
+                        this.lastName = arr[1]
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

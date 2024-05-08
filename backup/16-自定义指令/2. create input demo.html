@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create input demo</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <script type="text/javascript" src="../../js/dayjs.min.js"></script>
+</head>
+<body>
+<button id="btn">点我创建一个 input</button>
+<script type="application/javascript">
+   const btn = document.getElementById("btn")
+   btn.onclick=()=>{
+    const input = document.createElement("input")
+    document.body.append(input)
+    input.focus() // 先 append 后才能 focus
+   }
+</script>
+</body>
+</html>

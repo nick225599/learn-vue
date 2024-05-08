@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <style>
+        input {
+            width: 400px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <form action="changeName" method="post">
+            名：<input type="text" name="firstName" v-model="firstName"><br>
+            姓：<input type="text" name="lastName" v-model="lastName"><br>
+            全名：<span>{{getFullName()}}</span><br>
+            <input type="submit" value="changeName">
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: 'Nickolas',
+                lastName: 'Sun'
+            },
+            methods :{
+                getFullName() {
+                    console.log(this)
+                    return this.firstName.toUpperCase() + ' · ' + this.lastName.toUpperCase()
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

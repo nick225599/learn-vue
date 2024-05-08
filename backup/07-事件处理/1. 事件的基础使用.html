@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- TODO sun_cs 这写法也太灵活了，感觉不利于代码阅读与维护, typescript 就是为了解决这种问题？ -->
+        <button v-on:click="showInfo1">点我今年补税100w 1</button>
+        <button @click="showInfo1()">点我今年补税100w 1</button>
+        <button @click=showInfo1>点我今年补税100w 1</button>
+        <h2></h2>
+
+        <div>调用方法没有()， 行参又有一个入参，那么实际入参就是 event 本身</div>
+        <button v-on:click="showInfo2">点我今年补税100w 2A</button>
+        <br/>
+        <div>调用方法有()， 行参又有一个入参，那么实际入参就是 null</div>
+        <button v-on:click="showInfo2()">点我今年补税100w 2B</button>
+        <div>调用方法有('param3')， 行参又有一个入参，那么实际入参就是 'param3'</div>
+        <button v-on:click="showInfo3('param3')">点我今年补税100w 3</button>
+        <h2></h2>
+
+        <div>两个形参，只用了一个，那么第二个就是 null</div>
+        <button v-on:click="showInfo4('param4')">点我今年补税100w 4</button>
+        <div>两个形参，手动传入 $event</div>
+        <button v-on:click="showInfo4($event,'param4')">点我今年补税100w 4</button>
+        <div>两个形参，传啥就是啥</div>
+        <button v-on:click="showInfo4('param4','param5')">点我今年补税100w 5</button>
+
+    </div>
+
+    <script type="text/javascript">
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+
+            },
+            methods: {
+                showInfo1() {
+                    console.log('1')
+                },
+                showInfo2(param) {
+                    console.log('2', param)
+                },
+                showInfo3(event) {
+                    console.log('3', event)
+                },
+                showInfo4(event, param) {
+                    console.log('4', event, param)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

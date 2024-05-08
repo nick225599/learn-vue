@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <style>
+        ul {
+            height: 200px;
+            width: 200px;
+            overflow: auto;
+            border: 1px black;
+            background-color: aqua;
+            border: solid 1px black;
+        }
+
+        li {
+            height: 200px;
+            overflow: auto;
+            top: 1px;
+            background-color: bisque;
+            border: solid 1px black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h2>欢迎来到{{name}}学习</h2>
+
+
+        <div>prevent 阻止默认行为</div>
+        <a href="https://www.baidu.com" @click="alertMsg('你好同学')">点我提示信息1</a>
+        <a href="https://www.baidu.com" @click.prevent="alertMsg('你好同学')">点我提示信息2</a>
+
+
+        <div>stop 阻止事件冒泡</div>
+        <div @click="alertMsg('div1')">
+            div1
+            <div @click="alertMsg('div2')">
+                div2
+            </div>
+        </div>
+        <div @click="alertMsg('div3')">
+            div3
+            <div @click.stop="alertMsg('div4')">
+                div4
+            </div>
+        </div>
+
+        <div>once 事件只触发一次</div>
+        <div @click="alertMsg('div5')">
+            div5
+        </div>
+        <div @click.once="alertMsg('div6')">
+            div6
+        </div>
+
+        <div>capture 优先执行捕获逻辑</div>
+        <div @click="consoleEcho('dev1')">
+            dev1
+            <div @click="consoleEcho('dev2')">
+                dev2
+            </div>
+        </div>
+        <br/><br/>
+
+
+        <div @click="consoleEcho('dev1')">
+            dev1
+            <div @click.capture="consoleEcho('dev2.capture')">
+                dev2.capture
+            </div>
+        </div>
+        <br/><br/>
+
+        <div @click.capture="consoleEcho('dev1.capture')">
+            dev1.capture
+            <div @click="consoleEcho('dev2')">
+                dev2
+            </div>
+        </div>
+        <br/><br/>
+
+        <div @click.capture="consoleEcho('dev1.capture')">
+            dev1.capture
+            <div @click.capture="consoleEcho('dev2.capture')">
+                dev2.capture
+            </div>
+        </div>
+        <br/><br/>
+
+
+        <div>self 事件只有自身能出发，不能被冒泡触发</div>
+        <div @click.self="consoleEcho($event.target)">
+            dev1.self
+            <div @click="consoleEcho($event.target)">
+                dev2
+            </div>
+        </div>
+        <br/><br/>
+
+        <div>passive 先执行默认行为，再执行绑定事件</div>
+        <ul @wheel.passive="floatingPointArithmetic()">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷'
+            },
+            methods: {
+                alertMsg(msg) {
+                    alert(msg)
+                },
+                floatingPointArithmetic() {
+                    for (let i = 0; i < 500000; i++) {
+                        console.log('@')
+                    }
+                    console.log('累死了')
+
+                },
+                consoleEcho(msg) {
+                    console.log(msg)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

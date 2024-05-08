@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <style>
+        input {
+            width: 400px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <form action="changeName.do" method="post">
+            名：<input type="text" name="inputNameFirstName"  value="null" placeholder="placeholder1111" v-model="firstName"><br>
+            姓：<input type="text" name="inputNameLastName" value="null" v-model:name="lastName"><br>
+            全名：<span>{{firstName.slice(0,4).toUpperCase()}}·{{lastName}}</span>
+            <input type="submit" name="submitName" value="submitValue">
+            回顾 v-bind 的 input：<input type="text" name="name1"  value="value1" placeholder="placeholder1" v-bind:value="vBindValue1"><br>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: 'Nickolas',
+                lastName: 'Sun',
+                vBindValue1: 'vBindValue1InData'
+            }
+        })
+    </script>
+
+</body>
+
+</html>

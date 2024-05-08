@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>学校名称：{{name}}</h1>
+        <h1>学校地址：{{address}}</h1>
+    </div>
+
+    <script type="text/javascript">
+
+        let data={
+            name: '尚硅谷',
+            address: '鸿福科技园'
+        }
+
+        const vm = new Vue({
+            el: '#root',
+            data
+        })
+    </script>
+</body>
+
+</html>

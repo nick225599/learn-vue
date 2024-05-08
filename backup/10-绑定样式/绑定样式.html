@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>绑定样式</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <style>
+        input {
+            width: 400px;
+            margin-top: 10px;
+        }
+
+        .color-basic {
+            background-color: gray;
+        }
+
+        .colorRed {
+            background-color: red;
+        }
+
+        .colorYellow {
+            background-color: yellow;
+        }
+
+        .colorBlue {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- setTimeout 回调函数写到 vue methods 里能不能被 vue 回调？ -->
+    <!-- 行不通，setTimeout 并不能阻塞主线程 -->
+
+    <div id="root">
+        <div>字符串写法，适用于样式类名不确定，需要动态指定的场景</div>
+        <div class="color-basic" :class="colorCalculated" @click="changeBackgroudColorStr()">
+            Hello, Vue!
+        </div>
+        <br><br>
+
+        <div>数组写法，适用于样式类名不确定，要用的数量也不确定的时候</div>
+        <hr />
+        <div class="color-basic" :class="colorArr" @click="changeBackgroudColorArr()">
+            Hello, Vue!
+        </div>
+        <br><br>
+
+        <div>对象写法，适用于样式类名确定，要用的数量也确定的时候，但是用不用不确定的场景（换用数组写法也行，数组即对象，但是对象好维护）</div>
+        <hr />
+        <div class="color-basic" :class="colorObj" @click="changeBackgroudColorObj()">
+            Hello, Vue!
+        </div>
+        <br><br>
+
+        <div :style="'font-size: ' + styleFrontSize + 'px'">
+            Hello, Vue!
+        </div>
+
+        <div :style="{fontSize: '40px'}">
+            Hello, Vue!
+        </div>
+
+        <div :style="style2">
+            Hello, Vue!
+        </div>
+
+
+    </div>
+
+    <script type="text/javascript">
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                colorCalculated: 'color-basic',
+                colorArr: ['colorRed', 'colorYellow', 'colorBlue'],
+                colorObj: {
+                    colorRed: true,
+                    colorYellow: true,
+                    colorBlue: true,
+                },
+                styleFrontSize: 40,
+                style2: [
+                    {
+                        "fontSize":"40px",
+                        "":"",
+                    },
+                    {"":""},
+                ]
+            },
+            methods: {
+                changeBackgroudColorStr() {
+
+                    // [0, 10)
+                    let random = Math.random() * 10
+                    random = Math.floor(random)
+
+                    // 20%
+                    if (random < 2) {
+                        this.colorCalculated = 'colorRed'
+
+
+                        // 60%
+                    } else if (random < 8) {
+                        this.colorCalculated = 'colorBlue'
+
+                        // 20%
+                    } else {
+                        this.colorCalculated = 'colorYellow'
+                    }
+
+                    this.clickCount++
+                },
+
+                changeBackgroudColorArr() {
+                    // [0, 10)
+                    let random = Math.random() * 10
+                    random = Math.floor(random)
+
+                    // 20%
+                    if (random < 2) {
+                        this.colorArr = ['colorRed']
+
+
+                        // 60%
+                    } else if (random < 8) {
+                        this.colorArr = ['colorBlue']
+
+                        // 20%
+                    } else {
+                        this.colorArr = ['colorYellow']
+                    }
+
+                    this.clickCount++
+                },
+                changeBackgroudColorObj() {
+
+                    // [0, 10)
+                    let random = Math.random() * 10
+                    random = Math.floor(random)
+
+                    // 20%
+                    if (random < 2) {
+                        this.colorObj.colorRed = true,
+                            this.colorObj.colorYellow = false,
+                            this.colorObj.colorBlue = false
+
+
+                        // 60%
+                    } else if (random < 8) {
+                        this.colorObj.colorRed = false,
+                            this.colorObj.colorYellow = true,
+                            this.colorObj.colorBlue = false
+
+                        // 20%
+                    } else {
+                        this.colorObj.colorRed = false,
+                            this.colorObj.colorYellow = false,
+                            this.colorObj.colorBlue = true
+                    }
+
+                    this.clickCount++
+                },
+            },
+        })
+    </script>
+
+</body>
+
+</html>
