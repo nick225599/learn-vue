@@ -1,7 +1,8 @@
 // 定义路由规则
 import VueRouter from "vue-router";
 
-import HomeVue from '../components/Home.vue'
+
+import HomeVue from '../pages/home/Home.vue'
 
 export default new VueRouter({
     routes: [
@@ -15,7 +16,7 @@ export default new VueRouter({
         },
         {
             path: "/about",
-            component: () => import("../components/About.vue")
+            component: () => import("../pages/about/About.vue")
         }
     ]
 })
