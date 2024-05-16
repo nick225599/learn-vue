@@ -16,7 +16,17 @@ export default new VueRouter({
         },
         {
             path: "/about",
-            component: () => import("../pages/about/About.vue")
+            component: () => import("../pages/about/About.vue"),
+            children: [
+                {
+                    path: "/about/aboutCompany",
+                    component: () => import("../pages/about/AboutCompany.vue")
+                },
+                {
+                    path: "aboutTeam",
+                    component: () => import("../pages/about/AboutTeam.vue")
+                }
+            ]
         }
     ]
 })

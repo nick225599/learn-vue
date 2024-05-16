@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-header>
-        <BannerVue/>
-      </el-header>
-      <el-container>
-      <el-aside width="200px">
+    <div class="top">
+      <BannerVue/>
+      <hr/>
+    </div>
+    <div class="main">
+      <div class="left" width="200px">
         <router-link to="/home">Home</router-link>
         <br/>
         <router-link to="/about">About</router-link>
-      </el-aside>
-      <el-main>
+      </div>
+      <div class="right">
         <router-view></router-view>
-      </el-main>
-      </el-container>
-      <el-footer>        Fouter      </el-footer>
-    </el-container>
+      </div>
+    </div>
+    <div class="bottom">
+      <hr/>
+      版权所有©上海万序健康科技有限公司丨万序健康 沪ICP备08105451号-7
+    </div>
   </div>
 </template>
 

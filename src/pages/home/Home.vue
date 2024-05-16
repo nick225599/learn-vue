@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h4>Home</h4>
+    <h4>首页</h4>
+    <div>
+      欢迎光临
+    </div>
   </div>
 </template>
 
