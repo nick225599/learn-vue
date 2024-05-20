@@ -9,10 +9,7 @@
 
 <script>
 export default {
-  name: 'HomeVue',
-  data() {
-    return {}
-  }
+  name: 'HomeVue'
 }
 </script>
 
