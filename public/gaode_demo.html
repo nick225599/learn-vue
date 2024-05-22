@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高德demo</title>
+    <style>
+        #container {width:300px; height: 180px; }
+    </style>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode:'2c5563f619e3d50a5f2ff91cd24428f2',
+        }
+    </script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=10fbfc325e6bf5316f54abcdf8e149fa"></script>
+</head>
+<body>
+<div id="container"></div>
+<script>
+
+    // 绘制地图
+    var map = new AMap.Map('container', {
+        zoom:11,//级别
+        center: [116.397428, 39.90923],//中心点坐标
+        viewMode:'3D', //使用3D视图
+        mapStyle: 'amap://styles/grey', //设置地图的显示样式
+    });
+
+    // 添加实时路况图层
+    var trafficLayer = new AMap.TileLayer.Traffic({
+        zIndex: 10
+    });
+    map.add(trafficLayer);//添加图层到地图
+
+    // 添加点位
+    var marker = new AMap.Marker({
+        position:[116.39, 39.9]//位置
+    })
+    map.add(marker);//添加到地图
+
+
+    // 添加折现图
+    var lineArr = [
+        [116.368904, 39.913423],
+        [116.382122, 39.901176],
+        [116.387271, 39.912501],
+        [116.398258, 39.904600]
+    ];
+    var polyline = new AMap.Polyline({
+        path: lineArr,          //设置线覆盖物路径
+        strokeColor: "#3366FF", //线颜色
+        strokeWeight: 5,        //线宽
+        strokeStyle: "solid",   //线样式
+    });
+    map.add(polyline);
+
+</script>
+</body>
+</html>
